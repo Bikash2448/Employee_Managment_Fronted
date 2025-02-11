@@ -1,0 +1,9 @@
+/* .back{
+    background-image: url(../public/background.jpg);
+    background-position: center;
+    background-size: cover;
+} */
+.con{
+    border-radius: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+}
