@@ -6,6 +6,8 @@ import Register from './Components/Register'
 import Admin from './Page/Admin'
 import Emp from './Page/Emp'
 import Home from './Components/Home';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
                   <Route path="/admin" element={<Admin/>} />
                   <Route path="/emp" element={<Emp/>} />
             </Routes>
+            <ToastContainer position="top-right" autoClose={3000} />
         </Router>
     
   )

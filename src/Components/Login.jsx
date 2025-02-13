@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { GoogleLogin } from '@react-oauth/google';
+// import { useNavigate } from 'react-router-dom';
+// import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -41,16 +44,20 @@ const Login = () => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('user', JSON.stringify(user));
 
+      toast.success(`Welcome, ${user.name}!`, { position: 'top-right' });
+
       // Navigate based on role
       if (user.role === 'admin') {
         navigate('/admin', { state: { name: user.name, id: user._id } });
       } else if (user.role === 'employee') {
         navigate('/emp', { state: { name: user.name, id: user._id } });
       } else {
-        alert('Unknown role!');
+        toast.warning('Unknown role!', { position: 'top-right' });
       }
     } catch (error) {
-      alert(error.response?.data?.message || 'Login failed!');
+      toast.error(error.response?.data?.message || 'Login failed!', {
+        position: 'top-right',
+      });
     } finally {
       setLoading(false);
       setEmail('');
@@ -90,7 +97,7 @@ const Login = () => {
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
-          <h3 className='w-full p-3 text-white text-center'>OR</h3>
+          {/* <h3 className='w-full p-3 text-white text-center'>OR</h3>
           <div className="w-full flex justify-center">
             <GoogleLogin
               onSuccess={onSuccess}
@@ -98,9 +105,13 @@ const Login = () => {
               useOneTap
               className="text-center w-full"
             />
-          </div>
+          </div> */}
         </form>
+        <div className='flex justify-evenly m-4 '>
+          <p className='pr-4 '>Don't have an account  <Link to="/register" className='text-white text-l pl-2'>Register</Link></p>
+        </div>
       </div>
+      
     </div>
   );
 };
