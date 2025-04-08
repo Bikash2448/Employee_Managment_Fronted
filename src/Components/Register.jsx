@@ -24,7 +24,8 @@ const Register = () => {
       setLoading(false);
       return; // Stop form submission
     }
-  
+
+    // import.meta.env.VITE_BACKEND_URL
 
     try{
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users`,{
@@ -40,6 +41,7 @@ const Register = () => {
       navigate('/login')
     }catch(e){
       console.log("Data Does not send",e);
+      setLoading(false);
       toast.error("Registration failed. Try again!", { position: "top-right" });
     }
     setEmail('')

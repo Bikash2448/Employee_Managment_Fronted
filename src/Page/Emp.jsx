@@ -29,11 +29,11 @@ const Emp = () => {
 
         async function fetchTaskCounts() {
             try {
-                // ✅ Fetch only task count data for `TaskListNumber`
+                //  Fetch only task count data for `TaskListNumber`
                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks/emp/${id}`);
                 console.log("Task Counts Response:", response.data);
 
-                // ✅ Use the API response directly for counts
+                // Use the API response directly for counts
                 setTaskCounts({
                     newTask: response.data.newTask || 0,
                     inProgress: response.data.inProgress || 0,
@@ -48,11 +48,11 @@ const Emp = () => {
 
         async function fetchFullTaskList() {
             try {
-                // ✅ Fetch full task list for `TaskList`
+                //  Fetch full task list for `TaskList`
                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasks`);
                 console.log("Full Task List Response:", response.data);
 
-                // ✅ Extract tasks for the current user
+                //  Extract tasks for the current user
                 const userTasks = response.data.find(task => task.user === id)?.tasks || [];
                 setTasks(userTasks);
 
@@ -61,8 +61,8 @@ const Emp = () => {
             }
         }
 
-        fetchTaskCounts(); // ✅ Update counts for TaskListNumber
-        fetchFullTaskList(); // ✅ Fetch full task list for TaskList
+        fetchTaskCounts(); //  Update counts for TaskListNumber
+        fetchFullTaskList(); // Fetch full task list for TaskList
 
         setLoading(false);
     }, [id, triggerEffect]);

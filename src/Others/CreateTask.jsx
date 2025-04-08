@@ -34,7 +34,7 @@ const CreateTask = ({ onTaskCreated }) => {
             toast.success('Task successfully created!', { position: 'top-right' });
             onTaskCreated();
 
-            // ✅ Clear form fields after successful submission
+            //  Clear form fields after successful submission
             setTaskTitle('');
             setDate('');
             setAsignto('');
@@ -49,7 +49,7 @@ const CreateTask = ({ onTaskCreated }) => {
 
     return (
         <div>
-            {/* ✅ Enables toast notifications */}
+            {/*  Enables toast notifications */}
             <ToastContainer />
 
             <div className='p-5 bg-[#1c1c1c] mt-7 rounded'>
